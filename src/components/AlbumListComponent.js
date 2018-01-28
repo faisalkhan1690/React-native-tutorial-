@@ -23,7 +23,6 @@ class AlbumList extends Component {
     );
   }
   render() {
-    console.warn("in rander");
     console.warn(this.state.albums);
     return (
       <View>
