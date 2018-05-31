@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { ScrollView } from 'react-native';
 import axios from 'axios';
 import AlbumDetails from './AlbumDetailsComponent';
-import Card from './CardComponent';
 
 class AlbumList extends Component {
   state = { albums: [] };

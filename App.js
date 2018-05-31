@@ -5,8 +5,8 @@
  */
 
 import React, { Component } from 'react';
-import Header from './src/components/HeaderComponent';
-import AlbumList from './src/components/AlbumListComponent';
+import Header from './src/Components/Phaseone/HeaderComponent';
+import AlbumList from './src/Components/Phaseone/AlbumListComponent';
 import {View} from 'react-native';
 
 
