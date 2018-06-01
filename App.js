@@ -1,13 +1,8 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import Header from './src/Components/Phaseone/HeaderComponent';
 import AlbumList from './src/Components/Phaseone/AlbumListComponent';
 import {View} from 'react-native';
+import AlbumInfo from './src/Containers/AlbumInfo';
 
 
 export default class App extends Component {
@@ -16,7 +11,8 @@ export default class App extends Component {
     return (
         <View>
           <Header headerText={'My Music App'}/>
-          <AlbumList/>
+          {/* <AlbumList/> */}
+          <AlbumInfo />
         </View>
     );
   }

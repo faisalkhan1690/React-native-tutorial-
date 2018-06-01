@@ -4,7 +4,7 @@ import RootReducer from './src/Services/rootreducer';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
-import AlbumInfo from './src/Containers/AlbumInfo';
+import App from './App';
 
 
 export const store = createStore(
@@ -15,7 +15,7 @@ export const store = createStore(
 
   const ReduxApp = () => (
     <Provider store={store}>
-      <AlbumInfo />
+      <App />
     </Provider>
   );
 

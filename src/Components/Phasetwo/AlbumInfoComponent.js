@@ -15,6 +15,7 @@ class AlbumInfoComponent extends Component {
 
     }
 
+
     rerderListItem(item){
         
         return(
@@ -33,7 +34,6 @@ class AlbumInfoComponent extends Component {
     render() {
         return ( 
             <View>
-                <Header headerText={"Tech Stack"}/>
                  <FlatList
                     data={this.state.listData}
                     renderItem={({item})=>this.rerderListItem(item)}
