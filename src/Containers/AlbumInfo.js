@@ -3,9 +3,11 @@ import AlbumInfoComponent from '../Components/Phasetwo/AlbumInfoComponent'
 import { libraryListState, libraryDataState} from '../Services/Phasetwo/LibraryAction';
  
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state) => {
+  return({
      librariesData : state.librariesReducer
-});
+  })
+};
 
 const mapDispatchToProps = (dispatch) => ({ 
   libraryListState: () => dispatch(libraryListState()),

@@ -1,12 +1,27 @@
 import React, {Component} from 'react';
 import Header from '../Phaseone/HeaderComponent'
-import {View,Text,FlatList,TouchableWithoutFeedback} from 'react-native';
+import {
+    View,
+    Text,
+    FlatList,
+    TouchableWithoutFeedback,
+    LayoutAnimation
+} from 'react-native';
 import Card from  '../Phaseone/CardComponent'
 import CardSection from  '../Phaseone/CardSectionComponent'
 
 class AlbumInfoComponent extends Component {
 
-    state={listData:[]}
+    state={
+        listData:[],
+        description:"",
+        selectedId:"",
+        isExpend:false
+    }
+
+    componentWillUpdate(){
+        LayoutAnimation.spring();
+    }
 
     async componentWillMount(){
         await this.props.libraryListState();
@@ -16,25 +31,58 @@ class AlbumInfoComponent extends Component {
 
 
      async getAlbumData(item){
-        console.warn(item.id)
-        await this.props.libraryDataState(item.id);
-        alert(this.props.librariesData.librariesInfo);
+         if(this.state.selectedId===item.id && this.state.isExpend){
+            this
+            this.setState({
+                isExpend:false,
+                selectedId:"",
+                description:""
+            })
+         }else{
+            await this.props.libraryDataState(item.id);
+            this.setState({
+                isExpend:true,
+                selectedId:item.id,
+                description:this.props.librariesData.librariesInfo
+            });
+         }
+        
+        
 
     }
 
-    rerderListItem(item){
-        
+    showDescription(id){
         return(
-            <CardSection>
-            <TouchableWithoutFeedback onPress={()=>{
-               this.getAlbumData(item);
-            }}>
-            
-                <Text style={styles.titleStyle}>
-                    {item.title}
-                </Text>
-        </TouchableWithoutFeedback>
-        </CardSection>
+            this.state.selectedId===id?
+                this.state.isExpend?
+                    <CardSection>
+                        <Text style={{flex:1,paddingLeft:15}}>
+                            {this.state.description}
+                        </Text>
+                    </CardSection>
+                    :
+                    <View/>
+            :
+            <View/>
+        )
+    }
+
+    rerderListItem(item){
+        return(
+            <View>
+                <CardSection>
+                    <TouchableWithoutFeedback onPress={() => {
+                        this.getAlbumData(item);
+                    }}>
+
+                        <Text style={styles.titleStyle}>
+                            {item.title}
+                        </Text>
+
+                    </TouchableWithoutFeedback>
+                </CardSection>
+                {this.showDescription(item.id)}
+            </View>
         );
     }
 
@@ -42,6 +90,7 @@ class AlbumInfoComponent extends Component {
         return ( 
             <View>
                  <FlatList
+                    extraData={this.state}
                     data={this.state.listData}
                     renderItem={({item})=>this.rerderListItem(item)}
                 />
