@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import AlbumInfoComponent from '../Components/Phasetwo/AlbumInfoComponent'
-import { libraryState } from '../Services/Phasetwo/LibraryAction';
+import { libraryListState, libraryDataState} from '../Services/Phasetwo/LibraryAction';
  
 
 const mapStateToProps = (state) => ({
@@ -8,7 +8,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({ 
-      libraryState: () => dispatch(libraryState())
+  libraryListState: () => dispatch(libraryListState()),
+  libraryDataState: (id) => dispatch(libraryDataState(id))
 });
 
 const AlbumInfo = connect(

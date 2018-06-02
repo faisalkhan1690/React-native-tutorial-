@@ -9,25 +9,32 @@ class AlbumInfoComponent extends Component {
     state={listData:[]}
 
     async componentWillMount(){
-        await this.props.libraryState();
-        console.warn(this.props);
+        await this.props.libraryListState();
         this.setState({listData:this.props.librariesData.libraries});
 
     }
 
 
+     async getAlbumData(item){
+        console.warn(item.id)
+        await this.props.libraryDataState(item.id);
+        alert(this.props.librariesData.librariesInfo);
+
+    }
+
     rerderListItem(item){
         
         return(
-            <TouchableWithoutFeedback onPress={()=>{
-                alert("Id:"+item.id); 
-            }}>
             <CardSection>
+            <TouchableWithoutFeedback onPress={()=>{
+               this.getAlbumData(item);
+            }}>
+            
                 <Text style={styles.titleStyle}>
                     {item.title}
                 </Text>
-            </CardSection>
         </TouchableWithoutFeedback>
+        </CardSection>
         );
     }
 
